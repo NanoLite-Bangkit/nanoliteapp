@@ -1,7 +1,8 @@
-package com.example.nanolite_app
+package com.example.nanolite_app.presentation.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.nanolite_app.R
 
 //NanoLite - App
 
