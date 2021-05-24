@@ -1,5 +1,6 @@
 package com.example.nanolite_app.di
 
+
 import com.google.firebase.auth.FirebaseAuth
 import dagger.Module
 import dagger.Provides

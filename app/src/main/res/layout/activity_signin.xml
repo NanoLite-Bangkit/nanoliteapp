@@ -4,21 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.ui.signup.MainActivity"
+    tools:context=".presentation.ui.signin.SignInActivity"
     android:padding="16dp">
-
-    <EditText
-        android:id="@+id/et_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Name"/>
 
     <EditText
         android:id="@+id/et_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Email"
-        android:layout_below="@id/et_name"/>
+        android:hint="Email"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -34,14 +27,5 @@
         android:text="Register"
         android:textAllCaps="false"
         android:layout_below="@id/et_password"/>
-
-    <TextView
-        android:id="@+id/tv_signin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Already have an account? Sign-in"
-        android:gravity="center_horizontal"
-        android:layout_below="@id/btn_signup"
-        android:paddingTop="12dp"/>
 
 </RelativeLayout>
