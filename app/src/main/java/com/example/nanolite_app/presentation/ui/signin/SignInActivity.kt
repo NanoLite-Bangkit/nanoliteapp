@@ -9,6 +9,7 @@ import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.nanolite_app.databinding.ActivitySigninBinding
 import com.example.nanolite_app.presentation.ui.HomeActivity
+import com.example.nanolite_app.presentation.ui.signup.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -39,6 +40,13 @@ class SignInActivity : AppCompatActivity() {
                 }
             }
         }
+
+        binding.tvRegister.setOnClickListener {
+            Intent(this, MainActivity::class.java).let {
+                startActivity(it)
+            }
+        }
+
     }
 
     private fun toHomeActivity(success: Boolean){
