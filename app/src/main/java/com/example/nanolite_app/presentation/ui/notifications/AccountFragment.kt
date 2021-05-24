@@ -1,4 +1,4 @@
-package com.example.nanolite_app.presentation.ui.ui.notifications
+package com.example.nanolite_app.presentation.ui.notifications
 
 import android.os.Bundle
 import android.view.LayoutInflater

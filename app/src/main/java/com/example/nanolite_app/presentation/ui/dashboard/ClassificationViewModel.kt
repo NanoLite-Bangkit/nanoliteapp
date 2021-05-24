@@ -1,4 +1,4 @@
-package com.example.nanolite_app.presentation.ui.ui.dashboard
+package com.example.nanolite_app.presentation.ui.dashboard
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

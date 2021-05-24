@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "152384659197",
+    "project_id": "nanolite-app",
+    "storage_bucket": "nanolite-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:152384659197:android:825b2da3f688d4a2876894",
+        "android_client_info": {
+          "package_name": "com.example.nanolite_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "152384659197-10kmsp3nmlul19rf8msabe08c5ih8lk4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA17fbr3JMdBpDW7F_LkLXFkz10Vg-vKnI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "152384659197-10kmsp3nmlul19rf8msabe08c5ih8lk4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

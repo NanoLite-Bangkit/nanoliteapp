@@ -1,14 +1,12 @@
-package com.example.nanolite_app.presentation.ui.ui.home
+package com.example.nanolite_app.presentation.ui.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.nanolite_app.R
 import com.example.nanolite_app.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
