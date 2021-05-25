@@ -3,6 +3,8 @@ package com.example.nanolite_app.presentation.ui.dashboard
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,15 +35,17 @@ class ClassificationFragment : Fragment() {
         binding.btnUploadImage.setOnClickListener {
             val intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.setType("image/*")
-            startActivityForResult(intent, REQUEST_CODE)
+            startActivityForResult(Intent.createChooser(intent, "Select Picture"), REQUEST_CODE)
         }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        if(resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE && data != null && data.data != null){
 
-        if(resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE){
-            binding.image.setImageURI(data?.data)
+            binding.image.setImageURI(data.data)
+
+            val filePath = data.data
         }
     }
 }

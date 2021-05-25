@@ -3,6 +3,7 @@ package com.example.nanolite_app.presentation.ui.signup
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import android.view.View
 import androidx.activity.viewModels
@@ -31,7 +32,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        cUser = FirebaseAuth.getInstance().currentUser
+        cUser = signUpViewModel.getCurrentUser()
 
         if(cUser != null){
             toHomeActivity()
@@ -67,14 +68,19 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     val user = User(name, email, password)
 
                     lifecycleScope.launch {
-                        signUpViewModel.setUserSignUp(user).addOnCompleteListener {
-                            if(it.isComplete){
+                        signUpViewModel.setUserSignUp(user)
+                            .addOnSuccessListener {
+                                signUpViewModel.insertUserData(name, email)
                                 toHomeActivity()
                             }
-                        }
+                            .addOnFailureListener {
+                                binding.etEmail.error = "Email sudah digunakan"
+                                Log.d("SignUp", "Failed")
+                            }
                     }
                 }
             }
+
             R.id.tv_signin -> {
                 Intent(this, SignInActivity::class.java).let {
                     startActivity(it)
@@ -89,4 +95,5 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         startActivity(intent)
         finish()
     }
+
 }

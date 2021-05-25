@@ -1,4 +1,4 @@
-package com.example.nanolite_app.domain.repository
+package com.example.nanolite_app.domain.usecase
 
 import com.example.nanolite_app.data.source.local.entity.ScanningEntity
 import com.example.nanolite_app.domain.model.User
@@ -10,7 +10,7 @@ import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
 import kotlinx.coroutines.flow.Flow
 
-interface INanoLiteRepository {
+interface NanoLiteUseCase {
     suspend fun setUserAuthentication(user: User): Task<AuthResult>
 
     suspend fun signIn(email: String, password: String): Task<AuthResult>
