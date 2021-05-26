@@ -3,6 +3,8 @@ package com.example.nanolite_app.presentation.ui.signup
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.util.Patterns
 import android.view.View
@@ -38,21 +40,72 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             toHomeActivity()
         }
 
+        textWatcher()
+
         binding.btnSignup.setOnClickListener(this)
         binding.tvSignin.setOnClickListener(this)
     }
 
+    private fun textWatcher() {
+        binding.etEmail.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                binding.tiEmail.error = null
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+        })
+
+        binding.etName.addTextChangedListener(object: TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                binding.tiName.error = null
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+        })
+
+        binding.etPassword.addTextChangedListener(object: TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                binding.tiPassword.error = null
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+        })
+    }
+
     private fun isValid(name: String,  email: String, password: String): Boolean{
         return if(name.isEmpty()){
-            binding.etName.error = "Masukkan nama anda"
+            binding.tiName.error = "Masukkan nama anda"
             false
         } else if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            binding.etEmail.error = "Email tidak valid"
+            binding.tiEmail.error = "Email tidak valid"
             false
         } else if(password.isEmpty()){
-            binding.etPassword.error = "Masukkan password"
+            binding.tiPassword.error = "Masukkan password"
             false
-        }  else {
+        } else if(password.length < 6) {
+            binding.tiPassword.error = "Minimal 6 character"
+            false
+        } else {
             true
         }
     }
@@ -74,7 +127,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                                 toHomeActivity()
                             }
                             .addOnFailureListener {
-                                binding.etEmail.error = "Email sudah digunakan"
+                                binding.tiEmail.error = "Email sudah digunakan"
                                 Log.d("SignUp", "Failed")
                             }
                     }
@@ -95,5 +148,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         startActivity(intent)
         finish()
     }
+
+
 
 }

@@ -12,10 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Nanoliteapp">
-        <activity android:name=".presentation.ui.signin.SignInActivity"></activity>
+        <activity android:name=".presentation.ui.signin.SignInActivity"/>
         <activity
             android:name=".presentation.ui.HomeActivity"
-            android:label="@string/title_activity_home"></activity>
+            android:label="@string/title_activity_home"/>
         <activity android:name=".presentation.ui.signup.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

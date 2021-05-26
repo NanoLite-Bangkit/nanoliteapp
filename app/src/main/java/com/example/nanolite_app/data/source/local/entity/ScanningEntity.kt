@@ -18,5 +18,8 @@ data class ScanningEntity(
     var trashName: String,
 
     @ColumnInfo(name = "date")
-    var date: String
+    var date: String,
+
+    @ColumnInfo(name = "imageUri")
+    var imageUri: String
 )

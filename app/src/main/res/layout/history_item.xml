@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content" android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_waste"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            tools:src="@drawable/ic_history_24_black"/>
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/iv_waste"
+            tools:text="26-05-2021"
+            android:layout_marginStart="8dp"
+            android:paddingTop="8dp"/>
+
+        <TextView
+            android:id="@+id/tv_waste_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            tools:text="Botol"
+            android:textSize="24sp"
+            android:layout_toEndOf="@id/iv_waste"
+            android:layout_marginStart="8dp"
+            android:layout_below="@id/tv_date"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/tv_classification"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="anorganik"
+            android:textSize="14sp"
+            android:layout_toEndOf="@id/iv_waste"
+            android:layout_marginStart="8dp"
+            android:layout_below="@id/tv_waste_name"/>
+
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>
