@@ -21,5 +21,8 @@ data class ScanningEntity(
     var date: String,
 
     @ColumnInfo(name = "imageUri")
-    var imageUri: String
+    var imageUri: String,
+
+    @ColumnInfo(name = "classification")
+    var classification: String
 )

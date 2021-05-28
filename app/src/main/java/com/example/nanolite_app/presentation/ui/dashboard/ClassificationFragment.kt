@@ -46,6 +46,8 @@ class ClassificationFragment : Fragment() {
             binding.image.setImageURI(data.data)
 
             val filePath = data.data
+
+            Log.d("POIU", data.data.toString())
         }
     }
 }
