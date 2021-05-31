@@ -11,19 +11,19 @@ object DataDummy {
         list.add(Waste(
                 "rahmanarief99@gmail.com",
                 "arief",
-                "botol",
+                "plastic",
                 "27-05-2021",
-                "content://com.android.providers.media.documents/document/image%3A18418",
-                "plastic"
+                "content://media/external/images/media/18620",
+                "anorganik"
         ))
 
         list.add(Waste(
             "rahmanarief99@gmail.com",
             "arief",
-            "kardus",
+            "cardboard",
             "27-05-2021",
-            "content://com.android.providers.media.documents/document/image%3A18429",
-            "cardboard"
+            "content://media/external/images/media/18429",
+            "anorganik"
         ))
         return list
     }

@@ -1,11 +1,13 @@
 package com.example.nanolite_app.presentation.ui
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.nanolite_app.R
 import com.example.nanolite_app.databinding.ActivityHomeBinding
@@ -29,5 +31,24 @@ class HomeActivity : AppCompatActivity() {
             R.id.navigation_history, R.id.navigation_dashboard, R.id.navigation_notifications))
 //        setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 121)
+        }
+
+        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 999)
+        }
+
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if(requestCode == 121 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+            return
+        }
+        if(requestCode == 999 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+            return
+        }
     }
 }

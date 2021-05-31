@@ -7,4 +7,6 @@
     <string name="upload_image">Upload Image</string>
     <string name="scanning_history">Scanning History</string>
     <string name="title_history">History</string>
+    <string name="title_recommendation">Rekomendasi untuk kamu</string>
+    <string name="scan">Scan</string>
 </resources>

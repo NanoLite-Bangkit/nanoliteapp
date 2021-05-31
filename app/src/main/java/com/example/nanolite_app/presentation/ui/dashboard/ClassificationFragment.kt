@@ -1,13 +1,18 @@
 package com.example.nanolite_app.presentation.ui.dashboard
 
+import android.Manifest
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.nanolite_app.databinding.FragmentClassificationBinding
@@ -33,10 +38,15 @@ class ClassificationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.btnUploadImage.setOnClickListener {
-            val intent = Intent(Intent.ACTION_GET_CONTENT)
+            val intent = Intent(Intent.ACTION_PICK)
             intent.setType("image/*")
             startActivityForResult(Intent.createChooser(intent, "Select Picture"), REQUEST_CODE)
         }
+    }
+
+    private fun openCamera() {
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        startActivityForResult(intent, 123)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -46,8 +56,6 @@ class ClassificationFragment : Fragment() {
             binding.image.setImageURI(data.data)
 
             val filePath = data.data
-
-            Log.d("POIU", data.data.toString())
         }
     }
 }

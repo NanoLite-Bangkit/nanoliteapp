@@ -1,15 +1,22 @@
 package com.example.nanolite_app.presentation.ui.detail
 
+import android.Manifest
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.nanolite_app.databinding.ActivityDetailWasteBinding
 import com.example.nanolite_app.domain.model.Recycler
 import com.example.nanolite_app.domain.model.Waste
 import com.example.nanolite_app.utils.DataDummy
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import java.io.File
 
 class DetailWasteActivity : AppCompatActivity() {
 
@@ -32,7 +39,7 @@ class DetailWasteActivity : AppCompatActivity() {
         val list  = ArrayList<Recycler>()
 
         for(rekomen in DataDummy.getRecommendation()){
-            if(rekomen.jenisSampah == waste.classification){
+            if(rekomen.jenisSampah == waste.trashName){
                 list.add(rekomen)
             }
         }
@@ -43,7 +50,8 @@ class DetailWasteActivity : AppCompatActivity() {
             it.tvDate.text = waste.date
             it.tvWasteName.text = waste.trashName
             it.tvClassification.text = waste.classification
-            Glide.with(this)
+
+            Glide.with(binding.root)
                 .load(Uri.parse(waste.imageUri))
                 .centerCrop()
                 .into(binding.ivWaste)
@@ -52,6 +60,11 @@ class DetailWasteActivity : AppCompatActivity() {
                 rv.layoutManager = LinearLayoutManager(this)
                 rv.adapter = adapter
             }
+        }
+
+        BottomSheetBehavior.from(binding.sheet).apply {
+            peekHeight = 220
+            this.state = BottomSheetBehavior.STATE_COLLAPSED
         }
 
 
