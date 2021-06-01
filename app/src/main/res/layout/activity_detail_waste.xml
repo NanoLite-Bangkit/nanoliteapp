@@ -14,13 +14,12 @@
         app:cardCornerRadius="24dp"
         app:cardElevation="0dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp">
+        android:layout_marginTop="32dp">
         <ImageView
             android:id="@+id/iv_waste"
             android:layout_width="240dp"
             android:layout_height="240dp"
             tools:src="@drawable/ic_history_24_black"
-            android:scaleType="centerCrop"
             tools:ignore="ContentDescription" />
     </androidx.cardview.widget.CardView>
 

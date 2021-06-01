@@ -11,6 +11,9 @@ import com.example.nanolite_app.databinding.HistoryItemBinding
 import com.example.nanolite_app.domain.model.Waste
 import com.example.nanolite_app.presentation.ui.detail.DetailWasteActivity
 import com.example.nanolite_app.presentation.ui.detail.DetailWasteActivity.Companion.EXTRA_WASTE
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class HistoryAdapter: RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
     private val list = ArrayList<Waste>()
@@ -28,13 +31,27 @@ class HistoryAdapter: RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
                 with(waste){
                     it.tvWasteName.text = this.trashName
                     it.tvClassification.text = this.classification
-                    it.tvDate.text = this.date
+                    it.tvDate.text = formatDate(this.date)
                     Glide.with(binding.root)
                             .load(Uri.parse(this.imageUri))
                             .centerCrop()
                             .into(it.ivWaste)
                 }
             }
+        }
+
+        private fun formatDate(date: String): String{
+            var formattedDate = ""
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                val localDateTime = LocalDateTime.parse(date)
+                val dateFormatter = DateTimeFormatter.ofPattern("EEE, d MMM yyyy - h:mm a")
+                formattedDate = dateFormatter.format(localDateTime)
+            } else {
+                val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+                val formatter = SimpleDateFormat("EEE, d MMM yyyy - h:mm a")
+                formattedDate = formatter.format(parser.parse(date))
+            }
+            return formattedDate
         }
     }
 
@@ -56,4 +73,6 @@ class HistoryAdapter: RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
     override fun getItemCount(): Int {
         return list.size
     }
+
+
 }

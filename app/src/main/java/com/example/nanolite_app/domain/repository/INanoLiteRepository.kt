@@ -1,5 +1,6 @@
 package com.example.nanolite_app.domain.repository
 
+import androidx.lifecycle.LiveData
 import com.example.nanolite_app.data.source.local.entity.ScanningEntity
 import com.example.nanolite_app.domain.model.User
 import com.google.android.gms.tasks.Task
@@ -26,4 +27,6 @@ interface INanoLiteRepository {
     suspend fun insertScanningResult(scanningEntity: ScanningEntity)
 
     fun getScanningHistory(email: String): Flow<List<ScanningEntity>>
+
+    fun getScanningResult(date: String): Flow<List<ScanningEntity>>
 }

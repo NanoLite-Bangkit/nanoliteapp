@@ -1,5 +1,7 @@
 package com.example.nanolite_app.data.source.local
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.nanolite_app.data.source.local.entity.ScanningEntity
 import com.example.nanolite_app.data.source.local.room.ScanningDao
 import kotlinx.coroutines.flow.Flow
@@ -13,7 +15,11 @@ class LocalDataSource @Inject constructor(private val scanningDao: ScanningDao) 
         scanningDao.insert(scanningEntity)
     }
 
-    fun getScanningResult(email: String): Flow<List<ScanningEntity>> {
+    fun getScanningHistory(email: String): Flow<List<ScanningEntity>> {
         return scanningDao.getHistory(email)
+    }
+
+    fun getScanningResult(date: String): Flow<List<ScanningEntity>> {
+        return scanningDao.getScanningResult(date)
     }
 }

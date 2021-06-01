@@ -9,8 +9,8 @@ object DataDummy {
         val list = ArrayList<Waste>()
 
         list.add(Waste(
+                0,
                 "rahmanarief99@gmail.com",
-                "arief",
                 "plastic",
                 "27-05-2021",
                 "content://media/external/images/media/18620",
@@ -18,8 +18,8 @@ object DataDummy {
         ))
 
         list.add(Waste(
+                1,
             "rahmanarief99@gmail.com",
-            "arief",
             "cardboard",
             "27-05-2021",
             "content://media/external/images/media/18429",
@@ -32,17 +32,17 @@ object DataDummy {
         val list = ArrayList<Recycler>()
 
         list.add(Recycler(
-            "plastic",
+            "Plastic",
             "https://www.tokomesin.com/berikut-cara-membuat-daur-ulang-botol-plastik-yang-bisa-anda-coba.html"
         ))
 
         list.add(Recycler(
-            "cardboard",
+            "Cardboard",
             "https://www.rimma.co/52183/inspiration/tips/daripada-dibuang-ubah-kardus-bekas-menjadi-4-barang-bermanfaat-ini/"
         ))
 
         list.add(Recycler(
-            "cardboard",
+            "Cardboard",
             "https://web.archive.org/web/20130617101216/http://ohoh-blog.blogspot.mx:80/2013/06/diy-cardboard-photo-frame.html"
         ))
 

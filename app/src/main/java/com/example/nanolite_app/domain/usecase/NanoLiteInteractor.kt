@@ -1,5 +1,6 @@
 package com.example.nanolite_app.domain.usecase
 
+import androidx.lifecycle.LiveData
 import com.example.nanolite_app.data.source.local.entity.ScanningEntity
 import com.example.nanolite_app.domain.model.User
 import com.example.nanolite_app.domain.repository.INanoLiteRepository
@@ -42,5 +43,9 @@ class NanoLiteInteractor @Inject constructor(private val nanoLiteRepository: INa
 
     override fun getScanningHistory(email: String): Flow<List<ScanningEntity>> {
         return nanoLiteRepository.getScanningHistory(email)
+    }
+
+    override fun getScanningResult(date: String):  Flow<List<ScanningEntity>> {
+        return nanoLiteRepository.getScanningResult(date)
     }
 }

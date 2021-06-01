@@ -5,8 +5,8 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Waste(
+        var id: Int? = null,
         var email: String,
-        var userName: String,
         var trashName: String,
         var date: String,
         var imageUri: String,

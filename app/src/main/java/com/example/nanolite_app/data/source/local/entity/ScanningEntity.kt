@@ -7,12 +7,11 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "scanning_history")
 data class ScanningEntity(
-    @PrimaryKey
-    @NonNull
-    var email: String,
+    @PrimaryKey(autoGenerate = true)
+    var id: Int? = null,
 
-    @ColumnInfo(name = "userName")
-    var userName: String,
+    @ColumnInfo(name = "email")
+    var email: String,
 
     @ColumnInfo(name = "trashName")
     var trashName: String,

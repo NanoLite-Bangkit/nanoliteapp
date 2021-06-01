@@ -52,10 +52,16 @@ class Classifier {
             this.confidence= Float.parseFloat(String.format("%.2f", confidence*100));;
         }
 
+//        @NonNull
+//        @Override
+//        public String toString(){
+//            return " Hasil klasifikasi\n "+ title + " ("+ confidence+"%)";
+//        }
+
         @NonNull
         @Override
         public String toString(){
-            return " Hasil klasifikasi\n "+ title + " ("+ confidence+"%)";
+            return title;
         }
     }
 
