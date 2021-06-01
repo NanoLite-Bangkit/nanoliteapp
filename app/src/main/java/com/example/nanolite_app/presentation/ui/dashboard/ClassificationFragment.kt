@@ -45,6 +45,7 @@ class ClassificationFragment : Fragment() {
     private val mLabelPath = "labels.txt"
     private var classifier: Classifier? = null
     lateinit var img: Bitmap
+    lateinit var path: String
 
     companion object{
         const val REQUEST_CODE = 100
@@ -65,12 +66,26 @@ class ClassificationFragment : Fragment() {
         classifier = Classifier(requireActivity().assets, mModelPath, mLabelPath, mInputSize)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        if(ActivityCompat.checkSelfPermission(view.context, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
-            //Request camera permission
-            ActivityCompat.requestPermissions(activity as Activity, arrayOf(Manifest.permission.CAMERA), 777)
-        } else {
-            openCamera()
+        binding.btnCamera.setOnClickListener {
+            if(ActivityCompat.checkSelfPermission(view.context, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
+                ActivityCompat.requestPermissions(activity as Activity, arrayOf(Manifest.permission.CAMERA), 777)
+            } else {
+                openCamera()
+            }
+        }
+        binding.btnUploadImage.setOnClickListener {
+            val intent = Intent(Intent.ACTION_PICK)
+            intent.setType("image/*")
+            startActivityForResult(Intent.createChooser(intent, "Select Picture"), REQUEST_CODE)
+        }
+        binding.btnPredict.setOnClickListener {
+            val result: List<Classifier.Recognition> = classifier!!.recognizeImage(img)
+            Toast.makeText(activity, result[0].toString(), Toast.LENGTH_SHORT).show()
+            binding.textviewResult.setText(result[0].toString())
+            binding.btnPredict.isEnabled = false
+            predictAndResult(result[0].toString())
         }
     }
 
@@ -82,21 +97,23 @@ class ClassificationFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.R)
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+
         if(resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE && data != null && data.data != null){
 
             binding.image.setImageURI(data.data)
             binding.textviewResult.setText(getString(R.string.predict_hint))
             binding.btnPredict.isEnabled = true
-            binding.btnRecommendation.visibility = View.INVISIBLE
 
             //store image to bitmap for predict
-            var uri: Uri?= data?.data
+            initClassifier()
+            val uri: Uri?= data.data
             img = MediaStore.Images.Media.getBitmap(requireActivity().contentResolver, uri)
+            path = saveImg(img)
         }
 
         if(resultCode == Activity.RESULT_OK && requestCode == REQUEST_CAMERA){
             val bitmap = data?.extras?.get("data") as Bitmap
-            val path = saveImg(bitmap)
+            path = saveImg(bitmap)
             binding.image.setImageURI(Uri.parse(path))
             initClassifier()
             img = MediaStore.Images.Media.getBitmap(requireActivity().contentResolver, Uri.parse(path))
@@ -105,33 +122,38 @@ class ClassificationFragment : Fragment() {
             Toast.makeText(activity, result[0].toString(), Toast.LENGTH_SHORT).show()
             binding.textviewResult.setText(result[0].toString())
 
-            val trashName = result[0].toString()
-            var classification = ""
-
-            when(trashName){
-                "Plastic" -> { classification = "anorganik"}
-                "Cardboard" -> { classification = "anorganik"}
-                "Glass" -> { classification = "anorganik"}
-                "Metal" -> { classification = "anorganik"}
-                "Paper" -> { classification = "anorganik"}
-                "Trash" -> { classification = "organik"}
-            }
-
-            val email = classificationViewModel.getCurrentUser()?.email.toString()
-            val date = LocalDateTime.now().toString()
-            val waste = Waste( null, email,  trashName, date, path, classification)
-
-            lifecycleScope.launch {
-                classificationViewModel.insertScanningResult(waste)
-            }
-
-            //Intent ke DetailWasteActivity
-            val intent = Intent(view?.context, DetailWasteActivity::class.java)
-            intent.putExtra(EXTRA_WASTE, waste)
-            intent.putExtra(EXTRA_SCANNING_DATE, date)
-            intent.putExtra(EXTRA_SCANNING_ID, 1)
-            view?.context?.startActivity(intent)
+            predictAndResult(result[0].toString())
         }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun predictAndResult(trash : String){
+        val trashName = trash
+        var classification = ""
+
+        when(trashName){
+            "Plastic" -> { classification = "anorganik"}
+            "Cardboard" -> { classification = "anorganik"}
+            "Glass" -> { classification = "anorganik"}
+            "Metal" -> { classification = "anorganik"}
+            "Paper" -> { classification = "anorganik"}
+            "Trash" -> { classification = "organik"}
+        }
+
+        val email = classificationViewModel.getCurrentUser()?.email.toString()
+        val date = LocalDateTime.now().toString()
+        val waste = Waste( null, email,  trashName, date, path, classification)
+
+        lifecycleScope.launch {
+            classificationViewModel.insertScanningResult(waste)
+        }
+
+        //Intent ke DetailWasteActivity
+        val intent = Intent(view?.context, DetailWasteActivity::class.java)
+        intent.putExtra(EXTRA_WASTE, waste)
+        intent.putExtra(EXTRA_SCANNING_DATE, date)
+        intent.putExtra(EXTRA_SCANNING_ID, 1)
+        view?.context?.startActivity(intent)
     }
 
     private fun saveImg(bitmap: Bitmap): String{

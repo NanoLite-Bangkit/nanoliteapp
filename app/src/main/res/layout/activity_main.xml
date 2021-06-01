@@ -7,20 +7,29 @@
     tools:context=".presentation.ui.signup.MainActivity"
     android:padding="16dp">
 
+    <ImageView
+        android:id="@+id/iv_logo"
+        android:layout_width="150dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/logo_app"
+        android:layout_centerHorizontal="true"/>
+
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Daftar"
+        android:text="Register"
         android:textStyle="bold"
         android:textSize="22sp"
-        android:layout_marginTop="30dp"/>
+        android:layout_below="@id/iv_logo"
+        android:layout_marginTop="20dp"/>
 
     <TextView
         android:id="@+id/tv_desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Buat akun untuk melanjutkan!"
+        android:text="Create an account to continue!"
         android:textSize="18sp"
         android:layout_below="@+id/tv_title"
         android:layout_marginBottom="10dp"/>

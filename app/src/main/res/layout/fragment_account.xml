@@ -10,7 +10,7 @@
         android:id="@+id/background_image"
         android:layout_width="match_parent"
         android:layout_height="175dp"
-        android:background="@android:color/holo_red_light"/>
+        android:background="@color/blue"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cons_layout"
@@ -36,10 +36,11 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@id/image_profil"
-            android:text="Profil Saya"
+            android:text="My Profile"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:layout_marginBottom="15dp"
             android:layout_centerHorizontal="true"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -82,7 +83,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_personal_info"
-            android:text="Park Bo-Young"
             android:layout_toRightOf="@id/tv_label_nama"
             android:textSize="18sp"
             android:layout_marginTop="12dp"
@@ -103,7 +103,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_label_nama"
-            android:text="parkby@gmail.com"
             android:layout_toRightOf="@id/tv_label_email"
             android:textSize="18sp"
             android:layout_marginTop="12dp"
@@ -158,7 +157,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/btn_logout"
         android:layout_below="@id/rel_layout"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="50dp"
         android:layout_centerHorizontal="true"
         android:text="logout"/>
 

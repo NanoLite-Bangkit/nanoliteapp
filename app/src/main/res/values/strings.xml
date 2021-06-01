@@ -7,9 +7,9 @@
     <string name="upload_image">Upload Image</string>
     <string name="scanning_history">Scanning History</string>
     <string name="title_history">History</string>
-    <string name="title_recommendation">Rekomendasi untuk kamu</string>
+    <string name="title_recommendation">Recommendation for you</string>
     <string name="scan">Scan</string>
     <string name="predict_image">Predict Image</string>
-    <string name="textview_hint">Upload Image and Press Predict</string>
-    <string name="predict_hint">Image has been selected \nPress predict to see result</string>
+    <string name="textview_hint">Upload Image and Press Predict\nOR\nPress Camera and Take a Picture</string>
+    <string name="predict_hint">Image has been selected\nPress predict to see result</string>
 </resources>
