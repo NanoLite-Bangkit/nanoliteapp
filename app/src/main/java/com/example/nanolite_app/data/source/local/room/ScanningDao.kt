@@ -15,7 +15,7 @@ interface ScanningDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(entiy: ScanningEntity)
 
-    @Query("SELECT * FROM scanning_history where email = :email")
+    @Query("SELECT * FROM scanning_history where email = :email ORDER BY date DESC")
     fun getHistory(email: String): Flow<List<ScanningEntity>>
 
     @Query("SELECT * FROM scanning_history where date = :date")

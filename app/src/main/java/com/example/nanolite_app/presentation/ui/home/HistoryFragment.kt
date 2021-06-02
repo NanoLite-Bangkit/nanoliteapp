@@ -42,6 +42,7 @@ class HistoryFragment : Fragment() {
                 binding.rvHistory.let {
                     it.layoutManager = LinearLayoutManager(view.context)
                     it.adapter = adapter
+                    it.setHasFixedSize(false)
                 }
             })
         }

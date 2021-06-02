@@ -184,4 +184,12 @@ class ClassificationFragment : Fragment() {
         return url
     }
 
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if(requestCode == 777 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+            openCamera()
+        }
+
+    }
+
 }
