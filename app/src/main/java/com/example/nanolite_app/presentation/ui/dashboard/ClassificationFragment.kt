@@ -153,6 +153,7 @@ class ClassificationFragment : Fragment() {
         intent.putExtra(EXTRA_WASTE, waste)
         intent.putExtra(EXTRA_SCANNING_DATE, date)
         intent.putExtra(EXTRA_SCANNING_ID, 1)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
         view?.context?.startActivity(intent)
     }
 
@@ -172,9 +173,13 @@ class ClassificationFragment : Fragment() {
                 fos = resolver.openOutputStream(Objects.requireNonNull(imageUri)!!)!!
             }
         } else {
-            val imagesDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString()
-            val image = File(imagesDir, "${System.currentTimeMillis()}.jpg")
-            fos = FileOutputStream(image)
+            val resolver = view?.context?.contentResolver
+
+            val imageUri = MediaStore.Images.Media.insertImage(resolver, bitmap, "${System.currentTimeMillis()}.jpg", "${System.currentTimeMillis()}.jpg")
+            url = imageUri.toString()
+            if (resolver != null) {
+                fos = resolver.openOutputStream(Objects.requireNonNull(Uri.parse(imageUri))!!)!!
+            }
         }
 
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos)

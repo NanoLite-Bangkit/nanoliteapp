@@ -56,23 +56,6 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <!--            <ImageView-->
-            <!--                android:id="@+id/ic_history"-->
-            <!--                android:layout_width="50dp"-->
-            <!--                android:layout_height="50dp"-->
-            <!--                android:src="@drawable/ic_history_24_black"/>-->
-
-            <!--            <TextView-->
-            <!--                android:id="@+id/tv_history"-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_marginStart="8dp"-->
-            <!--                android:layout_marginEnd="8dp"-->
-            <!--                android:layout_marginTop="8dp"-->
-            <!--                android:textSize="24sp"-->
-            <!--                android:textStyle="bold"-->
-            <!--                android:text="@string/scanning_history"-->
-            <!--                android:layout_toEndOf="@id/ic_history"/>-->
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_history"
